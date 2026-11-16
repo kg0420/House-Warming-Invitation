@@ -1,0 +1,486 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#21100d">
+  <meta name="description" content="The Gupta Family warmly invites you to the Satyanarayan Mahapooja and celebration of their new home in Bhiwandi on Sunday, 20 December 2026.">
+  <title>Satyanarayan Mahapooja | The Gupta Family</title>
+
+  <!-- Google Fonts: Cinzel, Playfair Display, Noto Serif Devanagari, DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'invite/css/style.css' %}?v=1.4">
+</head>
+<body>
+  <!-- Ambient overlays -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <canvas id="sparkleCanvas" class="sparkle-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow glow-a" aria-hidden="true"></div>
+  <div class="ambient-glow glow-b" aria-hidden="true"></div>
+
+  <!-- Devotional Ritual Music Player (Satyanarayan / Vishnu Stuti) -->
+  <div class="ritual-player" id="ritualPlayer">
+    <button class="player-toggle-btn" id="playerToggleBtn" type="button" aria-label="Play or pause ritual music">
+      <span class="player-icon" id="playerIcon">▶</span>
+      <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </button>
+    <div class="player-details">
+      <span class="player-title">॥ ॐ नमो भगवते वासुदेवाय ॥</span>
+      <span class="player-sub">SATYANARAYAN RITUAL HYMN</span>
+    </div>
+  </div>
+
+  <!-- HTML5 Audio with fallback for custom devotional track -->
+  <audio id="ritualAudio" preload="none" loop>
+    <source src="{% static 'invite/audio/devotional.mp3' %}" type="audio/mpeg">
+    <source src="{% static 'invite/audio/pooja_ritual_song.wav' %}" type="audio/wav">
+  </audio>
+
+  <main>
+    <!-- Cinematic Entrance Scene Inspired by the Reel Reference -->
+    <section class="entry-scene" id="home">
+      <div class="entry-topline">
+        <span class="shloka-text">ॐ श्री गणेशाय नमः</span>
+        <span class="occasion-tag">NEW HOME · NEW BEGINNINGS</span>
+        <span class="shloka-text">॥ शुभ लाभ ॥</span>
+      </div>
+
+      <div class="entry-halo" aria-hidden="true"></div>
+
+      <!-- Welcome Title Header -->
+      <div class="entry-copy" id="entryCopy">
+        <p class="micro-label">A SPECIAL INVITATION FROM</p>
+        <h1>The Gupta <em>Family</em></h1>
+        <p class="entry-subtitle">A new home. A sacred beginning.</p>
+      </div>
+
+      <!-- Ornate 3D Carved Haveli / Mandir Doorway -->
+      <div class="doorway" id="doorway" aria-label="Carved traditional Indian doorway">
+        <!-- Toran: Realistic Marigolds, Mango Leaves, and Brass Temple Bells -->
+        <div class="toran-container" aria-hidden="true">
+          <div class="toran-thread"></div>
+          <div class="toran-elements">
+            <span class="toran-leaf"></span>
+            <span class="toran-marigold orange"></span>
+            <span class="hanging-bell bell-1">
+              <svg viewBox="0 0 20 28" class="bell-icon">
+                <path d="M10 0 L10 5 M6 5 C6 3, 14 3, 14 5 C14 12, 18 16, 18 21 L2 21 C2 16, 6 12, 6 5 Z" fill="#e5b863" stroke="#5d390a" stroke-width="0.8"/>
+                <circle cx="10" cy="24" r="2.2" fill="#d99f35"/>
+              </svg>
+            </span>
+            <span class="toran-marigold yellow"></span>
+            <span class="toran-leaf flipped"></span>
+            <span class="toran-marigold orange center"></span>
+            <span class="toran-leaf"></span>
+            <span class="toran-marigold yellow"></span>
+            <span class="hanging-bell bell-2">
+              <svg viewBox="0 0 20 28" class="bell-icon">
+                <path d="M10 0 L10 5 M6 5 C6 3, 14 3, 14 5 C14 12, 18 16, 18 21 L2 21 C2 16, 6 12, 6 5 Z" fill="#e5b863" stroke="#5d390a" stroke-width="0.8"/>
+                <circle cx="10" cy="24" r="2.2" fill="#d99f35"/>
+              </svg>
+            </span>
+            <span class="toran-marigold orange"></span>
+            <span class="toran-leaf flipped"></span>
+          </div>
+        </div>
+
+        <!-- Archway with Golden Om -->
+        <div class="door-arch">
+          <span class="arch-om">ॐ</span>
+        </div>
+
+        <!-- Left Wooden Door Leaf -->
+        <div class="door-leaf door-left" id="doorLeft">
+          <div class="door-panel panel-top">
+            <b>❋</b><span>✥</span><b>❋</b>
+          </div>
+          <div class="door-panel panel-middle">
+            <span>❧</span><b>ॐ</b><span>❧</span>
+          </div>
+          <div class="door-panel panel-bottom">
+            <b>✥</b><span>❋</span><b>✥</b>
+          </div>
+          <div class="door-knocker knocker-left">
+            <span class="knocker-stud"></span>
+            <span class="knocker-ring"></span>
+          </div>
+        </div>
+
+        <!-- Right Wooden Door Leaf -->
+        <div class="door-leaf door-right" id="doorRight">
+          <div class="door-panel panel-top">
+            <b>❋</b><span>✥</span><b>❋</b>
+          </div>
+          <div class="door-panel panel-middle">
+            <span>❧</span><b>शुभ</b><span>❧</span>
+          </div>
+          <div class="door-panel panel-bottom">
+            <b>✥</b><span>❋</span><b>✥</b>
+          </div>
+          <div class="door-knocker knocker-right">
+            <span class="knocker-stud"></span>
+            <span class="knocker-ring"></span>
+          </div>
+        </div>
+
+        <!-- Inner Mandir Sanctum -->
+        <div class="inside-view">
+          <div class="inside-glow-burst" aria-hidden="true"></div>
+          <div class="inside-lamp lamp-left" aria-hidden="true">
+            <span class="lamp-flame"></span>
+            <span class="lamp-body">🪔</span>
+          </div>
+          <div class="inside-lamp lamp-right" aria-hidden="true">
+            <span class="lamp-flame"></span>
+            <span class="lamp-body">🪔</span>
+          </div>
+          <div class="inner-mandir">
+            <div class="mandir-top">✦ ✧ ✦</div>
+            <div class="mandir-arch"></div>
+            <div class="mandir-kalash" aria-hidden="true">🏺</div>
+            <div class="ganesh-mark">ॐ</div>
+            <div class="mandir-caption">श्री सत्यनारायणाय नमः</div>
+          </div>
+          <div class="inside-floor"></div>
+        </div>
+
+        <!-- Door Threshold -->
+        <div class="door-threshold">
+          <span class="threshold-shubh">॥ शुभ लाभ ॥</span>
+        </div>
+      </div>
+
+      <!-- Auspicious Sacred Lotus & Diya Glow at Threshold -->
+      <div class="threshold-blooming" id="thresholdBloom" aria-hidden="true">
+        <div class="bloom-aura"></div>
+        <div class="sacred-lotus-flower">🪷</div>
+        <span class="bloom-shloka">॥ शुभ गृहप्रवेश ॥</span>
+      </div>
+
+      <!-- Divine Golden Blessing Hand (Abhaya Mudra) -->
+      <div class="golden-hand" id="goldenHand" aria-hidden="true">
+        <div class="hand-mandala mandala-1"></div>
+        <div class="hand-mandala mandala-2"></div>
+        <div class="hand-core">
+          <span>✋</span>
+          <i class="hand-om">ॐ</i>
+        </div>
+        <p class="blessing-invocation">॥ ॐ नमो भगवते वासुदेवाय नमः ॥</p>
+      </div>
+
+      <!-- Pushpavrishti: Floating Floral Petals -->
+      <div class="petal-layer" id="petalLayer" aria-hidden="true">
+        <b>✿</b><b>❀</b><b>✦</b><b>✿</b><b>❀</b><b>✦</b><b>✿</b><b>❀</b><b>✿</b><b>✦</b>
+      </div>
+
+      <!-- Door Instruction & Interactive Touch-To-Open Button -->
+      <div class="door-instruction" id="doorInstruction">
+        <span class="instruction-line"></span>
+        <p class="instruction-kicker">YOUR NEW BEGINNING AWAITS</p>
+        <button class="enter-button" id="enterHome" type="button">
+          <span class="btn-sparkle">✧</span>
+          <span class="btn-text">TOUCH TO OPEN THE DOOR</span>
+          <span class="btn-sparkle">✧</span>
+        </button>
+        <small class="instruction-sub">TAP TO IMMERSE IN THE EXPERIENCE</small>
+      </div>
+
+      <!-- Grand Royal Title Reveal Screen -->
+      <div class="title-reveal" id="titleReveal" aria-live="polite">
+        <p class="title-overline">WITH THE BLESSINGS OF THE ALMIGHTY</p>
+        <div class="title-om-wrap">
+          <div class="om-mandala-ring"></div>
+          <span class="title-om">ॐ</span>
+        </div>
+        <h2>Satyanarayan<br><em>Mahapooja</em></h2>
+        <div class="title-divider"><span></span>✦<span></span></div>
+        <p class="title-family">THE GUPTA FAMILY</p>
+        <p class="title-date">SUNDAY, 20 DECEMBER 2026 <b>·</b> BHIWANDI</p>
+        <div class="reveal-button-group">
+          <a class="continue-button" href="#invitation">OPEN YOUR INVITATION <span>↓</span></a>
+          <button class="replay-button" id="replayBtn" type="button">↺ REPLAY</button>
+        </div>
+      </div>
+
+      <div class="entry-bottom">
+        <span>॥ शुभारंभ ॥</span>
+        <span class="scroll-hint">SCROLL TO EXPLORE ↓</span>
+        <span>॥ सत्यमेव जयते ॥</span>
+      </div>
+    </section>
+
+    <!-- Section 2: The Royal Invitation Letter (Parchment Card) -->
+    <section class="invitation-section paper-section" id="invitation">
+      <div class="paper-frame">
+        <div class="paper-corner corner-tl">✥</div>
+        <div class="paper-corner corner-tr">✥</div>
+        <div class="paper-corner corner-bl">✥</div>
+        <div class="paper-corner corner-br">✥</div>
+
+        <p class="paper-kicker">॥ सप्रेम निमंत्रण ॥</p>
+        <div class="paper-emblem">
+          <span>ॐ</span>
+          <i>✿</i>
+        </div>
+
+        <p class="paper-intro">With immense joy, gratitude and humble hearts</p>
+        <h2>We invite you to<br>celebrate with us</h2>
+
+        <p class="paper-message">
+          As we step into our new home, we seek the divine blessings of Lord Satyanarayan 
+          for peace, happiness, health and abundance. Your presence, warm blessings and good wishes 
+          will make this auspicious occasion truly special for our family.
+        </p>
+
+        <div class="paper-shloka-banner">
+          <span>॥ गृहप्रवेशे शुभं भूयात् सर्वसंपत्प्रदायकम् ॥</span>
+        </div>
+
+        <div class="paper-flourish">❧ · ✦ · ❧</div>
+        <p class="paper-host">WITH ENDLESS LOVE & REGARDS</p>
+        <h3 class="host-family-name">The Gupta Family</h3>
+        <p class="host-place">Bhiwandi, Maharashtra</p>
+      </div>
+    </section>
+
+    <!-- Section 3: Event Details, Live Countdown & Action Buttons -->
+    <section class="event-section" id="details">
+      <div class="section-heading">
+        <p class="micro-label">AN AUSPICIOUS DAY TOGETHER</p>
+        <h2>Join us for the<br><em>Sacred Celebration</em></h2>
+        <p>We would be honoured to have you grace the occasion.</p>
+      </div>
+
+      <div class="event-layout">
+        <div class="event-art">
+          <div class="art-ring ring-one"></div>
+          <div class="art-ring ring-two"></div>
+          <div class="art-lotus">❀</div>
+          <div class="art-diya">🪔</div>
+          <p>शुभ लाभ</p>
+          <span>✦</span>
+        </div>
+
+        <div class="event-card">
+          <p class="card-eyebrow">YOU ARE CORDIALLY INVITED</p>
+          <div class="card-symbol">ॐ</div>
+          <h3>Satyanarayan<br><em>Mahapooja</em></h3>
+          <div class="card-separator"><span>✧</span></div>
+
+          <div class="event-facts">
+            <div class="fact">
+              <span class="fact-icon">▦</span>
+              <div>
+                <small>DATE</small>
+                <strong>{{ invite.date_display }}</strong>
+              </div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-icon">◷</span>
+              <div>
+                <small>POOJA TIMING</small>
+                <strong>{{ invite.pooja_start }} – {{ invite.pooja_end }}</strong>
+                <span>Followed by snacks and dinner</span>
+              </div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-icon">⌖</span>
+              <div>
+                <small>VENUE</small>
+                <strong>{{ invite.venue }}</strong>
+                <span id="venueAddress">{{ invite.address }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons Styled Strictly in Matching Gold / Warm Sandalwood Theme -->
+          <div class="card-action-bar">
+            <a class="card-action-btn primary-gold" href="{{ invite.map_url }}" target="_blank" rel="noopener">
+              <span>GET DIRECTIONS</span>
+              <i>↗</i>
+            </a>
+            <button class="card-action-btn outline-gold" id="calendarBtn" type="button">
+              <span>ADD TO CALENDAR</span>
+              <i>📅</i>
+            </button>
+            <button class="card-action-btn outline-gold" id="copyAddressBtn" type="button">
+              <span>COPY ADDRESS</span>
+              <i>📋</i>
+            </button>
+          </div>
+
+          <p class="card-signature">The Gupta Family</p>
+        </div>
+      </div>
+
+      <!-- Countdown Timer -->
+      <div class="countdown-wrap" id="countdown" data-date="{{ invite.event_date }}">
+        <p class="countdown-label">COUNTING DOWN TO THE AUSPICIOUS DAY</p>
+        <div class="countdown-units">
+          <div class="count-box"><strong id="days">--</strong><span>DAYS</span></div>
+          <i class="count-separator">:</i>
+          <div class="count-box"><strong id="hours">--</strong><span>HOURS</span></div>
+          <i class="count-separator">:</i>
+          <div class="count-box"><strong id="minutes">--</strong><span>MINUTES</span></div>
+          <i class="count-separator">:</i>
+          <div class="count-box"><strong id="seconds">--</strong><span>SECONDS</span></div>
+        </div>
+        <small id="countdownNote">We can't wait to welcome you with open arms.</small>
+      </div>
+    </section>
+
+    <!-- Section 4: Schedule / Timeline of Rituals -->
+    <section class="schedule-section" id="schedule">
+      <div class="section-heading">
+        <p class="micro-label">A DAY FILLED WITH DEVOTION & JOY</p>
+        <h2>Celebrations <em>through the day</em></h2>
+        <p>A sacred schedule of prayers, rituals and feasts</p>
+      </div>
+
+      <div class="schedule-list">
+        <article>
+          <span class="schedule-icon">ॐ</span>
+          <div>
+            <small>09:00 AM</small>
+            <h3>Ganesh Sthapana & Pooja Commencement</h3>
+            <p>Seeking Lord Ganesha's blessings to initiate the auspicious ceremonies without hindrance.</p>
+          </div>
+        </article>
+
+        <article>
+          <span class="schedule-icon">✧</span>
+          <div>
+            <small>11:30 AM – 01:30 PM</small>
+            <h3>Satyanarayan Mahakatha & Aarti</h3>
+            <p>Recitation of the sacred five-chapter Katha followed by the Mangal Aarti.</p>
+          </div>
+        </article>
+
+        <article>
+          <span class="schedule-icon">🪔</span>
+          <div>
+            <small>{{ invite.pooja_end }}</small>
+            <h3>Pooja Purnahuti & Concluding Blessings</h3>
+            <p>Concluding rituals, sacred Hawan offerings, and blessing distribution.</p>
+          </div>
+        </article>
+
+        <article>
+          <span class="schedule-icon">❀</span>
+          <div>
+            <small>{{ invite.snacks_time|upper }}</small>
+            <h3>Snacks & Mahaprasad</h3>
+            <p>Relish sacred Prasad and evening refreshments in the company of loved ones.</p>
+          </div>
+        </article>
+
+        <article>
+          <span class="schedule-icon">✦</span>
+          <div>
+            <small>{{ invite.dinner_time|upper }}</small>
+            <h3>Dinner & Togetherness</h3>
+            <p>A celebratory dinner and an evening of warm conversations in our newly blessed home.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 5: Sacred Sanskrit Blessings -->
+    <section class="blessing-section" id="blessings">
+      <div class="blessing-mandala" aria-hidden="true">✺</div>
+      <p class="blessing-om">ॐ</p>
+      <p class="sanskrit-line">सर्वे भवन्तु सुखिनः । सर्वे सन्तु निरामयाः ।</p>
+      <p class="sanskrit-line-sub">सर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत् ॥</p>
+      <h2>May our new home be filled with<br><em>happiness, health & prosperity.</em></h2>
+      <p class="blessing-text">Your presence will make our celebration complete.</p>
+      <span class="blessing-family">WITH LOVE · THE GUPTA FAMILY</span>
+    </section>
+
+    <!-- Section 6: RSVP & Social Sharing -->
+    <section class="rsvp-section" id="rsvp">
+      <div class="section-heading">
+        <p class="micro-label">WE HOPE TO SEE YOU THERE</p>
+        <h2>Kindly grace us<br><em>with your presence</em></h2>
+        <p>Please let us know if you can join us.</p>
+      </div>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <form class="rsvp-form" method="post" action="{% url 'rsvp' %}">
+        {% csrf_token %}
+        <label>
+          Your Full Name
+          <input name="name" type="text" placeholder="Enter your full name" required maxlength="120">
+        </label>
+
+        <div class="form-row">
+          <label>
+            Phone Number <small>(optional)</small>
+            <input name="phone" type="tel" placeholder="+91 98765 43210">
+          </label>
+          <label>
+            Number of Family Guests
+            <div class="guest-counter">
+              <button type="button" class="guest-btn" id="guestMinus" aria-label="Decrease guests">−</button>
+              <input name="guests" id="guestCount" type="number" min="1" max="30" value="1" required readonly>
+              <button type="button" class="guest-btn" id="guestPlus" aria-label="Increase guests">+</button>
+            </div>
+          </label>
+        </div>
+
+        <label>
+          Will you be joining us?
+          <select name="attendance">
+            <option value="yes">Joyfully attending (Yes!)</option>
+            <option value="maybe">We'll confirm soon</option>
+            <option value="no">Sorry, unable to attend</option>
+          </select>
+        </label>
+
+        <label>
+          A message or blessing for the family <small>(optional)</small>
+          <input name="message" type="text" maxlength="300" placeholder="Share your heartfelt wishes">
+        </label>
+
+        <button class="submit-button" type="submit">SEND RSVP <span>✧</span></button>
+      </form>
+
+      <!-- Share Actions — Matching Royal Gold Theme -->
+      <div class="share-actions">
+        <button class="share-button" id="shareButton" type="button">
+          SHARE INVITATION <span>↗</span>
+        </button>
+        {% if invite.whatsapp_number %}
+        <a class="share-button" href="https://wa.me/{{ invite.whatsapp_number }}?text=Namaste%20The%20Gupta%20Family%2C%20thank%20you%20for%20the%20Satyanarayan%20Mahapooja%20invitation." target="_blank" rel="noopener">
+          WHATSAPP THE FAMILY <span>↗</span>
+        </a>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <!-- Festive Footer -->
+  <footer>
+    <div class="footer-ornament">✥ ॐ ✥</div>
+    <p>With love, warmth & gratitude</p>
+    <h2>The Gupta Family</h2>
+    <span>॥ श्री सत्यनारायण भगवान की जय ॥</span>
+    <small>20 DECEMBER 2026 · BHIWANDI, MAHARASHTRA</small>
+  </footer>
+
+  <!-- Toast Notification for Link & Calendar Actions -->
+  <div class="toast-bubble" id="toastBubble" role="status" aria-live="polite"></div>
+
+  <script src="{% static 'invite/js/main.js' %}?v=1.4"></script>
+</body>
+</html>

@@ -1,0 +1,1971 @@
+/* ==========================================================================
+   THE GUPTA FAMILY — SATYANARAYAN MAHAPOOJA & GRIHA PRAVESH INVITATION
+   Aesthetic: Royal Indian Sandalwood & Gold Heritage (Mobile-First Reel Style)
+   ========================================================================== */
+
+:root {
+  --night: #1f0d0a;
+  --night-gradient: radial-gradient(ellipse at 50% 35%, #562719 0%, #280f0a 55%, #130604 100%);
+  --wine: #381812;
+  --wine2: #4f231a;
+  --gold: #d4a759;
+  --gold-light: #f3dda6;
+  --gold-dark: #b8853b;
+  --gold-glow: rgba(235, 185, 95, 0.4);
+  --paper: #f8eedc;
+  --paper2: #efe1c7;
+  --ink: #3b2016;
+  --ink-light: #6e4d3a;
+  --muted: #947354;
+  --kumkum: #cf2315;
+  --serif: 'Playfair Display', Georgia, serif;
+  --display: 'Cinzel', serif;
+  --devanagari: 'Noto Serif Devanagari', serif;
+  --sans: 'DM Sans', sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 999px;
+  --ease-smooth: cubic-bezier(0.18, 0.8, 0.25, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+  background-color: var(--night);
+  color: var(--paper);
+}
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--paper);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Ambient Layers */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+.sparkle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.ambient-glow {
+  position: fixed;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.glow-a {
+  background: #e3a342;
+  top: 10%;
+  left: -220px;
+}
+
+.glow-b {
+  background: #b54522;
+  right: -220px;
+  bottom: 8%;
+}
+
+/* Devotional Ritual Music Player Widget */
+.ritual-player {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(30, 11, 8, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 167, 89, 0.45);
+  border-radius: var(--radius-full);
+  padding: 6px 16px 6px 6px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(242, 219, 167, 0.2);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.ritual-player:hover {
+  background: rgba(43, 16, 12, 0.95);
+  border-color: var(--gold-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 167, 89, 0.3);
+}
+
+.player-toggle-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #d4a759;
+  background: linear-gradient(135deg, #f2dba7 0%, #d2a65b 100%);
+  color: #2b120a;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.player-toggle-btn:hover {
+  transform: scale(1.08);
+}
+
+.player-icon {
+  font-size: 11px;
+  margin-left: 2px;
+  line-height: 1;
+}
+
+.ritual-player.is-playing .player-icon {
+  display: none;
+}
+
+.player-toggle-btn .sound-bars {
+  display: none;
+}
+
+.ritual-player.is-playing .player-toggle-btn .sound-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 12px;
+}
+
+.sound-bars i {
+  display: block;
+  width: 2px;
+  height: 3px;
+  background: #2b120a;
+  border-radius: 1px;
+}
+
+.ritual-player.is-playing .sound-bars i:nth-child(1) { animation: barDance 0.8s infinite 0.1s; }
+.ritual-player.is-playing .sound-bars i:nth-child(2) { animation: barDance 0.8s infinite 0.3s; }
+.ritual-player.is-playing .sound-bars i:nth-child(3) { animation: barDance 0.8s infinite 0.2s; }
+.ritual-player.is-playing .sound-bars i:nth-child(4) { animation: barDance 0.8s infinite 0.4s; }
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.player-title {
+  font-family: var(--devanagari);
+  font-size: 0.75rem;
+  color: #fff2cb;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.player-sub {
+  font-family: var(--display);
+  font-size: 0.55rem;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+@keyframes barDance {
+  0%, 100% { height: 3px; }
+  50% { height: 11px; }
+}
+
+/* ==========================================================================
+   SECTION 1: THE EXTENDED CINEMATIC ENTRANCE SCENE
+   ========================================================================== */
+.entry-scene {
+  height: 100svh;
+  min-height: 720px;
+  max-height: 1100px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--night-gradient);
+  isolation: isolate;
+}
+
+.entry-scene::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(212, 167, 89, 0.28);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.entry-scene::after {
+  content: "";
+  position: absolute;
+  inset: 21px;
+  border: 1px solid rgba(212, 167, 89, 0.12);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.entry-topline, .entry-bottom {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gold-light);
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.entry-topline { top: 28px; }
+.entry-bottom { bottom: 18px; }
+
+.shloka-text {
+  font-family: var(--devanagari);
+  font-size: 0.82rem;
+  color: var(--gold);
+}
+
+.entry-halo {
+  position: absolute;
+  width: min(80vw, 680px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247, 191, 92, 0.1) 0%, transparent 68%);
+  box-shadow: 0 0 110px rgba(239, 180, 75, 0.12);
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Header Text (Above Door) */
+.entry-copy {
+  position: absolute;
+  z-index: 8;
+  top: 72px;
+  text-align: center;
+  transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth);
+}
+
+.micro-label {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.entry-copy h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 46px);
+  margin: 8px 0;
+  color: #fff3db;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+}
+
+.entry-copy h1 em {
+  color: var(--gold-light);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.entry-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #d8c096;
+}
+
+/* ==========================================================================
+   THE SACRED DOORWAY & 3D CARVED DOORS
+   ========================================================================== */
+.doorway {
+  position: absolute;
+  z-index: 4;
+  width: min(72vw, 380px);
+  height: min(60vh, 540px);
+  min-height: 400px;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  perspective: 1300px;
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.8));
+  transition: transform 1.2s var(--ease-smooth), opacity 1.2s;
+}
+
+/* Toran with Marigolds and Mango Leaves */
+.toran-container {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 52px;
+  z-index: 9;
+  pointer-events: none;
+}
+
+.toran-thread {
+  width: 100%;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, #d33824 0 6px, #f2c75a 6px 12px, #3b7b32 12px 18px);
+  border-radius: 2px;
+}
+
+.toran-elements {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 4px;
+  margin-top: -2px;
+}
+
+.toran-marigold {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.toran-marigold.orange {
+  background: radial-gradient(circle at 35% 35%, #ffbf47, #e87110 70%);
+}
+
+.toran-marigold.yellow {
+  background: radial-gradient(circle at 35% 35%, #fff285, #f5be20 70%);
+}
+
+.toran-marigold.center {
+  width: 22px;
+  height: 22px;
+  transform: translateY(2px);
+}
+
+.toran-leaf {
+  width: 14px;
+  height: 28px;
+  background: linear-gradient(135deg, #4da732, #1b6315);
+  border-radius: 0 100% 0 100%;
+  transform: rotate(-30deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.toran-leaf.flipped {
+  transform: rotate(30deg);
+}
+
+.hanging-bell {
+  width: 18px;
+  height: 26px;
+  transform-origin: top center;
+  animation: bellSwing 3s ease-in-out infinite;
+}
+
+.bell-2 {
+  animation-delay: 1.5s;
+}
+
+.bell-icon {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes bellSwing {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+/* Door Arch */
+.door-arch {
+  position: absolute;
+  inset: -28px -18px -8px;
+  border: 10px double var(--gold);
+  border-bottom: 0;
+  border-radius: 195px 195px 0 0;
+  background: linear-gradient(90deg, #2e130c, #64361e 50%, #2e130c);
+  box-shadow: inset 0 0 0 5px #2a110a, 0 0 0 3px rgba(212, 167, 89, 0.4);
+  z-index: 0;
+}
+
+.door-arch::before {
+  content: "";
+  position: absolute;
+  inset: 15px 13px 0;
+  border: 1px solid var(--gold);
+  border-bottom: 0;
+  border-radius: 180px 180px 0 0;
+  opacity: 0.55;
+}
+
+.arch-om {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--devanagari);
+  font-size: 26px;
+  color: var(--gold-light);
+  text-shadow: 0 0 20px #ffcb67;
+}
+
+/* Door Leaves (Carved Wood) */
+.door-leaf {
+  position: absolute;
+  z-index: 5;
+  top: 28px;
+  bottom: 0;
+  width: 50%;
+  background: repeating-linear-gradient(90deg, #37190d 0 5px, #58301a 6px 12px, #6e3d1f 13px 17px, #37190d 18px 22px);
+  border: 5px solid #bd914d;
+  outline: 2px solid #4a2715;
+  box-shadow: inset 0 0 0 5px #250f08, inset 0 0 0 8px var(--gold), inset 0 0 30px rgba(0, 0, 0, 0.7);
+  transform-style: preserve-3d;
+  transition: transform 2.3s cubic-bezier(0.25, 0.75, 0.2, 1);
+  overflow: hidden;
+}
+
+.door-left {
+  left: 0;
+  transform-origin: left center;
+  border-radius: 160px 0 0 0;
+}
+
+.door-right {
+  right: 0;
+  transform-origin: right center;
+  border-radius: 0 160px 0 0;
+}
+
+.door-panel {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  border: 2px solid rgba(212, 167, 89, 0.5);
+  box-shadow: inset 0 0 0 3px #281109, inset 0 0 0 5px rgba(212, 167, 89, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--gold);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  font-family: var(--devanagari);
+  background: linear-gradient(145deg, rgba(98, 48, 24, 0.7), rgba(40, 16, 10, 0.8));
+}
+
+.panel-top {
+  top: 7%;
+  height: 22%;
+  border-radius: 70px 70px 8px 8px;
+}
+
+.panel-middle {
+  top: 33%;
+  height: 34%;
+  flex-direction: column;
+  font-size: 17px;
+}
+
+.panel-middle b {
+  font-size: 28px;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.panel-bottom {
+  bottom: 7%;
+  height: 22%;
+  border-radius: 8px 8px 45px 45px;
+}
+
+.door-panel span { font-size: 22px; }
+.door-panel b { font-size: 20px; }
+
+/* Door Knocker */
+.door-knocker {
+  position: absolute;
+  top: 48%;
+  z-index: 6;
+  width: 22px;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.knocker-left { right: 10px; }
+.knocker-right { left: 10px; }
+
+.knocker-stud {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff0b8, #b8853b);
+  border: 1px solid #754f15;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.knocker-ring {
+  width: 18px;
+  height: 20px;
+  border: 3px solid #b8853b;
+  border-radius: 50%;
+  margin-top: -4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Inner Mandir Sanctum */
+.inside-view {
+  position: absolute;
+  z-index: 2;
+  inset: 24px 10px 0;
+  background: radial-gradient(ellipse at 50% 40%, #9e531e 0%, #4a2110 58%, #190905 100%);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-mandir {
+  position: relative;
+  width: 66%;
+  height: 56%;
+  border: 6px double var(--gold);
+  border-bottom: 0;
+  border-radius: 155px 155px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 0 55px rgba(255, 191, 75, 0.3), inset 0 0 30px rgba(255, 203, 107, 0.2);
+  background: linear-gradient(180deg, #743c18 0%, #35160c 100%);
+}
+
+.mandir-top {
+  position: absolute;
+  top: -22px;
+  color: var(--gold-light);
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.mandir-kalash {
+  font-size: 1.5rem;
+  margin-bottom: -6px;
+  filter: drop-shadow(0 0 10px rgba(255, 200, 80, 0.7));
+}
+
+.ganesh-mark {
+  font-family: var(--devanagari);
+  font-size: clamp(50px, 8vw, 80px);
+  color: #fff2cb;
+  text-shadow: 0 0 25px #ffd071;
+  animation: divineGlow 2.5s infinite alternate;
+  line-height: 1;
+}
+
+.mandir-caption {
+  font-family: var(--devanagari);
+  font-size: 0.72rem;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+.inside-lamp {
+  position: absolute;
+  bottom: 24%;
+  font-size: 28px;
+  filter: drop-shadow(0 0 16px #ffbb45);
+  z-index: 3;
+}
+
+.lamp-left { left: 10%; }
+.lamp-right { right: 10%; }
+
+.inside-floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background: linear-gradient(180deg, #995c27 0%, #32160c 100%);
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 -8px 30px rgba(245, 185, 74, 0.35);
+}
+
+.door-threshold {
+  position: absolute;
+  z-index: 8;
+  bottom: -8px;
+  left: -5%;
+  right: -5%;
+  height: 18px;
+  background: linear-gradient(180deg, #dfb768 0%, #522d14 100%);
+  border: 2px solid #d9b568;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.threshold-shubh {
+  font-family: var(--devanagari);
+  font-size: 0.72rem;
+  color: #3b190c;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SACRED LOTUS & DIYA RANGOLI BLOOM AT THRESHOLD
+   ========================================================================== */
+.threshold-blooming {
+  position: absolute;
+  z-index: 9;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.65);
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+
+.sacred-lotus-flower {
+  font-size: 38px;
+  filter: drop-shadow(0 0 16px rgba(255, 205, 80, 0.9));
+  animation: lotusPulse 2s ease-in-out infinite alternate;
+}
+
+.bloom-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250, 216, 136, 0.45) 0%, transparent 70%);
+  animation: pulseRipple 1.8s ease-out infinite;
+}
+
+.bloom-shloka {
+  display: block;
+  font-family: var(--devanagari);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  margin-top: 4px;
+}
+
+.entry-scene.opened .threshold-blooming {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+@keyframes lotusPulse {
+  0% { transform: scale(0.95); filter: drop-shadow(0 0 12px rgba(255, 200, 80, 0.7)); }
+  100% { transform: scale(1.08); filter: drop-shadow(0 0 22px rgba(255, 220, 110, 1)); }
+}
+
+@keyframes pulseRipple {
+  0% { transform: scale(0.4); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ==========================================================================
+   DIVINE BLESSING HAND (ABHAYA MUDRA)
+   ========================================================================== */
+.golden-hand {
+  position: absolute;
+  z-index: 10;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.35);
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transition: opacity 1.2s, transform 1.2s var(--ease-smooth);
+}
+
+.hand-core {
+  position: relative;
+  display: inline-block;
+}
+
+.hand-core span {
+  font-size: clamp(70px, 13vw, 115px);
+  filter: sepia(1) saturate(2.8) hue-rotate(355deg) drop-shadow(0 0 25px #ffc44e);
+  display: block;
+}
+
+.hand-om {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--devanagari);
+  font-style: normal;
+  font-size: 1.8rem;
+  color: #fff3ce;
+  text-shadow: 0 0 12px #ffbf4d;
+}
+
+.hand-mandala {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.mandala-1 {
+  width: 170px;
+  height: 170px;
+  border: 2px dashed rgba(242, 219, 167, 0.7);
+  animation: spinSlow 18s linear infinite;
+}
+
+.mandala-2 {
+  width: 250px;
+  height: 250px;
+  border: 1px dotted rgba(212, 167, 89, 0.5);
+  animation: spinReverse 25s linear infinite;
+}
+
+.blessing-invocation {
+  font-family: var(--devanagari);
+  font-size: clamp(14px, 2.4vw, 20px);
+  color: var(--gold-light);
+  text-shadow: 0 0 15px rgba(255, 210, 100, 0.8);
+  letter-spacing: 2px;
+  margin-top: 15px;
+}
+
+@keyframes spinSlow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes spinReverse { to { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+/* ==========================================================================
+   PUSHPAVRISHTI: PETAL SHOWER
+   ========================================================================== */
+.petal-layer b {
+  position: absolute;
+  z-index: 11;
+  color: #f2c56d;
+  text-shadow: 0 0 8px #ffd783;
+  font-size: 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.petal-layer b:nth-child(2n) { color: #e54b4b; }
+.petal-layer b:nth-child(1) { left: 12%; top: 25%; }
+.petal-layer b:nth-child(2) { left: 26%; top: 48%; }
+.petal-layer b:nth-child(3) { right: 15%; top: 30%; }
+.petal-layer b:nth-child(4) { right: 28%; top: 58%; }
+.petal-layer b:nth-child(5) { left: 42%; top: 20%; }
+.petal-layer b:nth-child(6) { right: 42%; top: 65%; }
+.petal-layer b:nth-child(7) { left: 8%; top: 62%; }
+.petal-layer b:nth-child(8) { right: 8%; top: 55%; }
+.petal-layer b:nth-child(9) { left: 52%; top: 35%; }
+.petal-layer b:nth-child(10) { right: 52%; top: 45%; }
+
+.petals-active b {
+  animation: petalDrift 5s ease-in-out infinite;
+}
+.petals-active b:nth-child(2n) { animation-delay: 1.2s; }
+.petals-active b:nth-child(3n) { animation-delay: 2.2s; }
+
+@keyframes petalDrift {
+  0% { opacity: 0; transform: translateY(-30px) rotate(0deg); }
+  25% { opacity: 0.9; }
+  100% { opacity: 0; transform: translateY(130px) rotate(160deg); }
+}
+
+/* ==========================================================================
+   DOOR INSTRUCTION & INTERACTIVE BUTTON
+   ========================================================================== */
+.door-instruction {
+  position: absolute;
+  z-index: 14;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.instruction-line {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(transparent, var(--gold));
+  margin: 0 auto 10px;
+}
+
+.instruction-kicker {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+}
+
+/* Unified Royal Button System */
+.enter-button, .continue-button, .submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #d9b36e;
+  background: linear-gradient(135deg, #f2dba7 0%, #d2a65b 50%, #b88843 100%);
+  color: #2b120a;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 167, 89, 0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.enter-button:hover, .continue-button:hover, .submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 30px rgba(242, 219, 167, 0.5);
+}
+
+.btn-sparkle {
+  font-size: 1rem;
+}
+
+.instruction-sub {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  color: #cbb28b;
+}
+
+/* ==========================================================================
+   EXTENDED ANIMATION SEQUENCE CLASS TRIGGERS
+   ========================================================================== */
+.entry-scene.opened .door-left {
+  transform: rotateY(-115deg);
+}
+
+.entry-scene.opened .door-right {
+  transform: rotateY(115deg);
+}
+
+.entry-scene.opened .entry-copy {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.entry-scene.opened .door-instruction {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(25px);
+}
+
+.entry-scene.opened .inside-view {
+  filter: brightness(1.35);
+}
+
+.entry-scene.blessing-show .golden-hand {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.entry-scene.mandir-zoom .doorway {
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* Stage 5: Grand Royal Title Screen */
+.title-reveal {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: radial-gradient(ellipse at center, rgba(46, 19, 13, 0.95) 0%, rgba(19, 7, 5, 0.98) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.3s;
+  padding: 24px;
+}
+
+.entry-scene.title-shown .title-reveal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.entry-scene.title-shown .doorway {
+  opacity: 0.18;
+  transform: translateX(-50%) scale(0.9);
+}
+
+.title-overline {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+.title-om-wrap {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  margin: 15px auto;
+}
+
+.om-mandala-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(242, 219, 167, 0.6);
+  animation: spinSlow 20s linear infinite;
+}
+
+.title-om {
+  font-family: var(--devanagari);
+  font-size: 48px;
+  color: var(--gold-light);
+  text-shadow: 0 0 25px #ffcd6a;
+}
+
+.title-reveal h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(36px, 6vw, 62px);
+  line-height: 1.1;
+  color: #fff0d0;
+  margin: 6px 0;
+}
+
+.title-reveal h2 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-light);
+}
+
+.title-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gold);
+  margin: 18px 0;
+}
+
+.title-divider span {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+.title-family {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  letter-spacing: 4px;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.title-date {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: #d6be99;
+  margin-top: 6px;
+}
+
+.title-date b {
+  padding: 0 8px;
+  color: var(--gold);
+}
+
+.reveal-button-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.replay-button {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  padding: 13px 22px;
+  border-radius: var(--radius-full);
+  font-family: var(--display);
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.replay-button:hover {
+  background: rgba(212, 167, 89, 0.2);
+  color: #fff;
+}
+
+/* ==========================================================================
+   SECTION 2: THE ROYAL INVITATION CARD ("PATRIKA")
+   ========================================================================== */
+.paper-section {
+  padding: 120px 22px;
+  background: radial-gradient(ellipse at center, #522718 0%, #210c07 75%);
+  display: flex;
+  justify-content: center;
+}
+
+.paper-frame {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  padding: 68px 56px 64px;
+  text-align: center;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fbf4e7 0%, #f0e1c4 50%, #fbf3e4 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  border: 1px solid #d6b778;
+  outline: 1px solid #c8a25f;
+  outline-offset: -10px;
+}
+
+.paper-frame::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(200, 162, 95, 0.4);
+  pointer-events: none;
+}
+
+.paper-corner {
+  position: absolute;
+  color: #bd9451;
+  font-size: 22px;
+}
+
+.corner-tl { top: 24px; left: 26px; }
+.corner-tr { top: 24px; right: 26px; }
+.corner-bl { bottom: 24px; left: 26px; }
+.corner-br { bottom: 24px; right: 26px; }
+
+.paper-kicker {
+  font-family: var(--devanagari);
+  font-size: 0.88rem;
+  color: #a47a40;
+  letter-spacing: 2px;
+}
+
+.paper-emblem {
+  margin: 24px auto 18px;
+  width: 78px;
+  height: 78px;
+  border: 1px solid #c8a56b;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  color: #b88944;
+}
+
+.paper-emblem::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed #d5b77d;
+  border-radius: 50%;
+}
+
+.paper-emblem span {
+  font-family: var(--devanagari);
+  font-size: 38px;
+}
+
+.paper-emblem i {
+  position: absolute;
+  bottom: -11px;
+  background: #f4e8d2;
+  padding: 0 6px;
+  font-style: normal;
+  color: #b88944;
+}
+
+.paper-intro {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #99784e;
+}
+
+.paper-frame h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 4.5vw, 44px);
+  line-height: 1.2;
+  color: #4a2b20;
+  margin: 14px 0;
+}
+
+.paper-message {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: #73543d;
+  max-width: 520px;
+  margin: 22px auto;
+}
+
+.paper-shloka-banner {
+  background: rgba(212, 167, 89, 0.15);
+  border-left: 2px solid #b88843;
+  border-right: 2px solid #b88843;
+  padding: 10px 18px;
+  max-width: 460px;
+  margin: 18px auto;
+  font-family: var(--devanagari);
+  font-size: 0.95rem;
+  color: #6a4023;
+  font-weight: 600;
+}
+
+.paper-flourish {
+  color: #b78d4d;
+  letter-spacing: 8px;
+  margin: 22px 0;
+}
+
+.paper-host {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: #997444;
+}
+
+.host-family-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #452419;
+  margin: 6px 0;
+}
+
+.host-place {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: #8c6a48;
+}
+
+/* ==========================================================================
+   SECTION 3: EVENT DETAILS & ACTIONS
+   ========================================================================== */
+.event-section {
+  padding: 110px max(6vw, 22px) 100px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.section-heading {
+  text-align: center;
+}
+
+.section-heading h2, .schedule-section h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.15;
+  color: #43271d;
+  margin: 12px 0;
+}
+
+.section-heading h2 em, .schedule-section h2 em {
+  color: #ae803d;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.section-heading > p:last-child {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #95785a;
+}
+
+.event-layout {
+  max-width: 1060px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.event-art {
+  height: 480px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #ead4a9 0%, #f4e8d0 60%, transparent 62%);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.art-ring {
+  position: absolute;
+  border: 1px solid #c6a36c;
+  border-radius: 50%;
+  width: 330px;
+  height: 330px;
+}
+
+.ring-two {
+  width: 280px;
+  height: 280px;
+  border-style: dashed;
+  animation: spinSlow 45s linear infinite;
+}
+
+.art-lotus {
+  font-size: 160px;
+  color: #b78b4b;
+  text-shadow: 0 10px 35px rgba(157, 113, 55, 0.25);
+}
+
+.art-diya {
+  position: absolute;
+  bottom: 19%;
+  font-size: 48px;
+  filter: drop-shadow(0 0 16px #d7a44d);
+}
+
+.event-art p {
+  position: absolute;
+  bottom: 8%;
+  font-family: var(--devanagari);
+  font-size: 17px;
+  color: #99713d;
+  letter-spacing: 4px;
+}
+
+.event-art > span {
+  position: absolute;
+  top: 15%;
+  font-size: 24px;
+  color: #b88c4b;
+}
+
+.event-card {
+  background: #ffffff;
+  padding: 45px 44px;
+  text-align: center;
+  border: 1px solid #d8bd8b;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 60px rgba(87, 53, 26, 0.1);
+  position: relative;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(214, 189, 139, 0.4);
+  pointer-events: none;
+}
+
+.card-eyebrow {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: #a17b46;
+}
+
+.card-symbol {
+  font-family: var(--devanagari);
+  font-size: 44px;
+  color: #b38a4c;
+  margin: 12px 0 6px;
+  line-height: 1;
+}
+
+.event-card h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.15;
+  color: #4b2b20;
+}
+
+.event-card h3 em {
+  color: #aa7c3e;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.card-separator {
+  margin: 18px 0;
+  color: #b68b4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.card-separator::before, .card-separator::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: #d4bd91;
+}
+
+.event-facts {
+  display: grid;
+  gap: 20px;
+  text-align: left;
+  max-width: 440px;
+  margin: 26px auto;
+}
+
+.fact {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.fact-icon {
+  font-size: 20px;
+  color: #b48b4d;
+  width: 26px;
+  text-align: center;
+}
+
+.fact div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fact small {
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: #a1835a;
+}
+
+.fact strong {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #533629;
+}
+
+.fact div span {
+  font-size: 0.85rem;
+  color: #8c725a;
+}
+
+/* Cohesive Action Bar inside Event Card */
+.card-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.card-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: var(--radius-full);
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.card-action-btn.primary-gold {
+  background: linear-gradient(135deg, #f2dba7 0%, #d2a65b 100%);
+  color: #2b120a;
+  border: 1px solid #d4a759;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 167, 89, 0.3);
+}
+
+.card-action-btn.primary-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(212, 167, 89, 0.45);
+}
+
+.card-action-btn.outline-gold {
+  background: #fffcf7;
+  color: #7a5323;
+  border: 1px solid #c9a465;
+}
+
+.card-action-btn.outline-gold:hover {
+  background: #f7eedd;
+  color: #3b190d;
+  border-color: #9e6e22;
+}
+
+.card-signature {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #9b784b;
+  margin-top: 25px;
+}
+
+/* Tabular Countdown Timer */
+.countdown-wrap {
+  text-align: center;
+  margin: 80px auto 0;
+}
+
+.countdown-label {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  color: #a17b48;
+}
+
+.countdown-units {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 35px);
+  margin: 22px 0;
+}
+
+.count-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #dfc79b;
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  min-width: 75px;
+}
+
+.count-box strong {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 46px);
+  color: #4a2b20;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.count-box span {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  color: #a1825b;
+  margin-top: 6px;
+}
+
+.count-separator {
+  font-family: var(--serif);
+  font-style: normal;
+  font-size: 24px;
+  color: #b88d4e;
+  margin-top: -12px;
+}
+
+.countdown-wrap > small {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #997c5d;
+}
+
+/* ==========================================================================
+   SECTION 4: SCHEDULE / TIMELINE
+   ========================================================================= */
+.schedule-section {
+  padding: 105px 22px;
+  background: #250f0c;
+  text-align: center;
+}
+
+.schedule-section .section-heading h2 {
+  color: #f7ebd5;
+}
+
+.schedule-section .section-heading > p:last-child {
+  color: #d6be9a;
+}
+
+.schedule-list {
+  max-width: 740px;
+  margin: 55px auto 0;
+  text-align: left;
+}
+
+.schedule-list article {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 22px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(177, 139, 80, 0.2);
+}
+
+.schedule-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold-light);
+  font-size: 1.25rem;
+  background: rgba(43, 18, 13, 0.6);
+}
+
+.schedule-list small {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: #c9a66c;
+}
+
+.schedule-list h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #f5e4c6;
+  margin: 4px 0;
+}
+
+.schedule-list p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #bca58a;
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 5: SACRED VEDIC BLESSINGS
+   ========================================================================== */
+.blessing-section {
+  padding: 105px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #5d2b1a 0%, #1c0806 72%);
+}
+
+.blessing-mandala {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 400px;
+  color: #e3ba6a;
+  opacity: 0.05;
+  animation: spinSlow 90s linear infinite;
+  pointer-events: none;
+}
+
+.blessing-om {
+  position: relative;
+  font-family: var(--devanagari);
+  font-size: 52px;
+  color: #e8c984;
+  text-shadow: 0 0 25px #d9a84e;
+  line-height: 1;
+}
+
+.sanskrit-line {
+  position: relative;
+  font-family: var(--devanagari);
+  font-size: clamp(17px, 2.8vw, 22px);
+  color: var(--gold-light);
+  font-weight: 500;
+  margin-top: 18px;
+}
+
+.sanskrit-line-sub {
+  position: relative;
+  font-family: var(--devanagari);
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: #e1c594;
+  margin-top: 6px;
+}
+
+.blessing-section h2 {
+  position: relative;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 48px);
+  line-height: 1.2;
+  color: #f6e8ce;
+  margin: 22px 0 10px;
+}
+
+.blessing-section h2 em {
+  color: #e4bf79;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.blessing-text {
+  position: relative;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #cdb38b;
+}
+
+.blessing-family {
+  position: relative;
+  display: block;
+  margin-top: 35px;
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: #d9b875;
+}
+
+/* ==========================================================================
+   SECTION 6: RSVP & SHARING
+   ========================================================================== */
+.rsvp-section {
+  padding: 105px 22px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.flash-message {
+  max-width: 580px;
+  margin: 15px auto;
+  padding: 14px 18px;
+  background: #fdf6ea;
+  border: 1px solid #c6a66b;
+  color: #5c3c26;
+  font-size: 0.92rem;
+  border-radius: var(--radius-sm);
+}
+
+.rsvp-form {
+  max-width: 580px;
+  margin: 45px auto 0;
+  background: #fffdf8;
+  padding: 40px 36px;
+  border: 1px solid #ddc99e;
+  border-radius: var(--radius-md);
+  box-shadow: 0 15px 45px rgba(80, 52, 27, 0.08);
+  text-align: left;
+}
+
+.rsvp-form label {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  color: #724e2c;
+  margin-bottom: 20px;
+}
+
+.rsvp-form label small {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  color: #9c8065;
+}
+
+.rsvp-form input, .rsvp-form select {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 16px;
+  border: 1px solid #dec79d;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  color: #4b3023;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.rsvp-form input:focus, .rsvp-form select:focus {
+  border-color: #b68a43;
+  box-shadow: 0 0 0 3px rgba(182, 138, 67, 0.18);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+}
+
+/* Guest Counter */
+.guest-counter {
+  display: flex;
+  margin-top: 8px;
+}
+
+.guest-btn {
+  width: 44px;
+  height: 48px;
+  background: #f7eedd;
+  border: 1px solid #dec79d;
+  color: #401f14;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+}
+
+.guest-btn:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.guest-btn:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.guest-btn:hover { background: #ebd5b3; }
+
+.guest-counter input {
+  margin-top: 0;
+  text-align: center;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  height: 48px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 16px;
+}
+
+/* Share Actions — Strictly Cohesive Gold */
+.share-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border: 1px solid #ad8246;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: #87612f;
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.share-button:hover {
+  background: #ad8246;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  padding: 60px 20px 32px;
+  background: #140705;
+  text-align: center;
+  color: #d7b675;
+  border-top: 1px solid rgba(212, 167, 89, 0.15);
+}
+
+.footer-ornament {
+  font-size: 24px;
+  color: var(--gold);
+}
+
+footer p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #c5a77a;
+  margin-top: 8px;
+}
+
+footer h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  color: #f0dfbb;
+  margin: 12px 0 14px;
+}
+
+footer span {
+  font-family: var(--devanagari);
+  font-size: 0.95rem;
+  color: #c9a96b;
+}
+
+footer small {
+  display: block;
+  margin-top: 30px;
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: #8e6e48;
+}
+
+/* Toast Bubble */
+.toast-bubble {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(70px);
+  background: #250f0c;
+  border: 1px solid var(--gold);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: all 0.35s var(--ease-smooth);
+}
+
+.toast-bubble.toast-open {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Scroll Reveal Helper */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s var(--ease-smooth);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .entry-scene { min-height: 690px; }
+  .entry-topline, .entry-bottom {
+    left: 4%;
+    right: 4%;
+    font-size: 0.58rem;
+    letter-spacing: 1.2px;
+  }
+  .entry-topline { top: 22px; }
+  .entry-copy { top: 64px; }
+  .doorway {
+    width: min(84vw, 360px);
+    height: min(56vh, 480px);
+    min-height: 380px;
+    bottom: 75px;
+  }
+  .door-instruction { bottom: 18px; }
+  .door-instruction p { font-size: 0.62rem; }
+  .enter-button { padding: 13px 20px; font-size: 0.7rem; }
+  .paper-section { padding: 80px 18px; }
+  .paper-frame { padding: 50px 24px 45px; }
+  .paper-message { font-size: 0.95rem; }
+  .event-section { padding: 80px 18px; }
+  .event-layout { grid-template-columns: 1fr; gap: 30px; margin-top: 35px; }
+  .event-art { height: 280px; width: 100%; margin: auto; }
+  .art-ring { width: 230px; height: 230px; }
+  .ring-two { width: 190px; height: 190px; }
+  .art-lotus { font-size: 110px; }
+  .art-diya { font-size: 36px; }
+  .event-card { padding: 36px 20px; }
+  .card-action-bar { flex-direction: column; width: 100%; }
+  .card-action-btn { width: 100%; justify-content: center; }
+  .countdown-units { gap: 10px; }
+  .count-box { min-width: 62px; padding: 12px 10px; }
+  .count-box strong { font-size: 26px; }
+  .schedule-section { padding: 80px 18px; }
+  .schedule-list article { grid-template-columns: 44px 1fr; gap: 14px; }
+  .schedule-icon { width: 42px; height: 42px; font-size: 1.1rem; }
+  .blessing-section { padding: 80px 18px; }
+  .rsvp-section { padding: 80px 18px; }
+  .rsvp-form { padding: 30px 18px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .share-actions { flex-direction: column; }
+  .share-button { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-reveal { opacity: 1; transform: none; }
+}
